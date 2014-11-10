@@ -1,6 +1,9 @@
 
-package monopoly;
+package monopoly.cases;
 
+
+import monopoly.Joueur;
+import monopoly.PlateauJeu;
 
 public class CaseAchetable {
     private int prix;

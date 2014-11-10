@@ -51,7 +51,8 @@ public class PlateauJeu {
 	 * @return La case qui est nbCases après c sur le plateau
 	 */
 	public Case avance(Case c, int nbCases) {
-		return c;
+		int nvpos = (c.getPosition() + nbCases) % cases.size();
+		return cases.get(nvpos);
 	}
 	
 	/**

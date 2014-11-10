@@ -19,6 +19,8 @@ public class CaseAchetable {
     }
     
     public CaseAchetable(int p){
+        super(nom,logo,position,plateau);
+    
         this.prix=p;
         
     }   

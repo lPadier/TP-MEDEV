@@ -6,11 +6,13 @@ import java.util.List;
 import monopoly.cases.Case;
 import monopoly.cases.CaseAchetable;
 import monopoly.cases.Constructible;
+import monopoly.cases.Gare;
 
 public class PlateauJeu {
 
 	private List<Joueur> joueurs;
 	private List<Case> cases;
+	private static String[] nomsGares = {"Gare du Nord", "Gare Montparnasse", "Gare de Lyon", "Gare St-Lazare"};
 	
 	public PlateauJeu() {
 		initPlateau();
@@ -28,10 +30,10 @@ public class PlateauJeu {
 	 * @param j le joueur
 	 * @return le nombre de cases possédées par le joueur j
 	 */
-	public int nbCases(Joueur j) {
+	public int nbGares(Joueur j) {
 		int nbr  =0;
 		for (Case c: cases){
-			if (c instanceof CaseAchetable){
+			if (c instanceof Gare){
 				if (j == ((CaseAchetable) c).getProprietaire()) {
 					nbr ++;
 				}
@@ -75,7 +77,13 @@ public class PlateauJeu {
 		}
 		cases = new ArrayList<>();
 		for (int i=0; i<40; i++){
-			Case c = new Constructible("Case anonyme", "", i, this, 10, 10);
+			Case c = null;
+			if (i%10 == 5) {
+				// Gare
+				c = new Gare(nomsGares[(i-5)/10], i, this);
+			} else {
+				c = new Constructible("Case anonyme", "", i, this, 10, 10);
+			}
 			cases.add(c);
 		}
 	}

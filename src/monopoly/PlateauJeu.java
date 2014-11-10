@@ -5,6 +5,7 @@ import java.util.List;
 
 import monopoly.cases.Case;
 import monopoly.cases.CaseAchetable;
+import monopoly.cases.Constructible;
 
 public class PlateauJeu {
 
@@ -74,7 +75,8 @@ public class PlateauJeu {
 		}
 		cases = new ArrayList<>();
 		for (int i=0; i<40; i++){
-			cases.add(new Case());
+			Case c = new Constructible("Case anonyme", "", i, this, 10, 10);
+			cases.add(c);
 		}
 	}
 

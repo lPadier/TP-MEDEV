@@ -11,7 +11,7 @@ public class PlateauJeu {
 	private List<Case> cases;
 	
 	public PlateauJeu() {
-		initPlateau(2);
+		initPlateau();
 	}
 
 	/**
@@ -66,5 +66,12 @@ public class PlateauJeu {
 		for (int i=0; i<40; i++){
 			cases.add(new Case());
 		}
+	}
+
+	/**
+	 * Initialise le plateau avec 2 joueurs
+	 */
+	public void initPlateau() {
+		initPlateau(2);
 	}
 }

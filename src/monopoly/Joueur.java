@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-
+package monopoly;
 import java.util.*;
 import java.io.*;
 
@@ -38,23 +38,49 @@ public class Joueur {
     }
     
     //Méthodes
+
+    public void paiement(Jouer j, int montant) throws NoMoreMoney{
+        J.ajouteSomme(montant);
+        fortune = fortune - montant;
+        if (fortune < 0){
+            throw new NoMoreMoney;
+        }
+    }
+
+    public String getNom(){
+        return nom;
+    }
+
+    public Case getPosition(){
+        return position;
+    }
+
+    public void setPosition(Case case){
+        position=case;
+    }
     
-    public void TourDeJeu(){
+    // Fonction décrivant un tour de jeu
+    public void tourDeJeu() throws NoMoreMoney{
         int de;
         de=lanceLeDe();
         
-        position=position+de;
+        position=position+de;   // Le joueur se déplace
         
         System.out.println(this.toString());
         
-        if(position.getClass().getSuperClass().getName()=="CaseAchetable" )
-            if (position.getProprietaire()!=null){
-                
+        if(position.instanceof CaseAchetable){
+            if (position.getProprietaire()!=null){   // La case a un propriétaire, on lui verse un loyer
+                paiement(position.getProprietaire(), position.loyer());
             }
-                && (de==1 || de==3 || de==5) && position.getProprietaire()==null && fortune>position.getPrix()){
-            position.acheter(this);
+
+            else if ((de==1 || de==3 || de==5) && position.getProprietaire()==null && fortune>position.getPrix()){  // On achète la case
+                position.acheter(this);
+            }
         }
-            
+        else {  // La case n'est pas achetable
+        // A compléter lorsqu'on aura des actions pour les cases achetables
+
+        }
         
     }
     
@@ -64,7 +90,12 @@ public class Joueur {
     
     //Affiche le nom et la position du joueur sous le format "Le joueur XX est en YY"
     public String toString(){
-        return "Le joueur "+nom+" est en "+position;
+        return "Le joueur "+nom+" est en "+position.toString();
+    }
+
+
+    private void ajouteSomme(int montant){
+        fortune=fortune + montant;
     }
     
 }

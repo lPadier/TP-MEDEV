@@ -34,8 +34,10 @@ public class CaseAchetable {
    public void acheter(Joueur j){
       
        try {
-           
-           j.depenser(prix);
+        j.depenser(prix);
+       }
+       catch(NoMoreMoney e){
+           System.out.prinln("Pas assez d'argent");
        }
        
        }

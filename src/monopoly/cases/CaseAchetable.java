@@ -42,13 +42,9 @@ public abstract class CaseAchetable extends Case {
 
     public void acheter(Joueur j) {
 
-        try {
             j.depenser(prix);
             setProprietaire(j);
-
-        } catch (NoMoreMoney e) {
-            System.out.println("Pas assez d'argent");
-        }
-
     }
+    
+    public abstract int loyer();
 }

@@ -8,9 +8,8 @@ public class CaseAchetable {
     
 
     
-    public CaseAchetable(int p){
+    public CaseAchetable(String nom, String logo, int position, PlateauJeu plateau, int p){
         super(nom,logo,position,plateau);
-    
         this.prix=p;
         
     }   

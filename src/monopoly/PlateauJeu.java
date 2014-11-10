@@ -1,5 +1,6 @@
 package monopoly;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import monopoly.cases.Case;
@@ -50,13 +51,28 @@ public class PlateauJeu {
 	 * @return La case qui est nbCases après c sur le plateau
 	 */
 	public Case avance(Case c, int nbCases) {
-		return c;
+		int nvpos = (c.getPosition() + nbCases) % cases.size();
+		return cases.get(nvpos);
 	}
 	
 	/**
 	 * Initialise le plateau
 	 */
+	public void initPlateau(int nbJoueurs) {
+		joueurs = new ArrayList<>();
+		for (int i=0; i<nbJoueurs; i++){
+			joueurs.add(new Joueur());
+		}
+		cases = new ArrayList<>();
+		for (int i=0; i<40; i++){
+			cases.add(new Case());
+		}
+	}
+
+	/**
+	 * Initialise le plateau avec 2 joueurs
+	 */
 	public void initPlateau() {
-		
+		initPlateau(2);
 	}
 }

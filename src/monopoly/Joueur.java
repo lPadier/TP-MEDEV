@@ -45,7 +45,7 @@ public class Joueur {
         j.ajouteSomme(montant);
         fortune = fortune - montant;
         if (fortune < 0){
-            throw new NoMoreMoney;
+            throw new NoMoreMoney();
         }
     }
 
@@ -61,7 +61,7 @@ public class Joueur {
         position=c;
     }
     
-    public void tourDeJeu(){
+    public void tourDeJeu() throws NoMoreMoney{
         int de;
         de = lanceLeDe();
         
@@ -72,7 +72,7 @@ public class Joueur {
         if(position instanceof CaseAchetable) {
             CaseAchetable positionAchetable = (CaseAchetable) position;
             if (positionAchetable.getProprietaire() != null) {
-                //Gerer le loyer ici
+                paiement(positionAchetable.getProprietaire(),positionAchetable.loyer());
             } else if (de%2 == 1 && fortune > positionAchetable.getPrix()) {
                 positionAchetable.acheter(this);
             }
@@ -88,13 +88,15 @@ public class Joueur {
         return ((int) Math.floor(Math.random()*6))+1;
     }
     
-    public String getNom() {
-        return this.nom;
-    }
 
+    @Override
     //Affiche le nom et la position du joueur sous le format "Le joueur XX est en YY"
     public String toString(){
-        return "Le joueur " + nom + " est en " + position;
+        return "Le joueur " + nom + " est en " + position.toString();
+    }
+    
+    public void depenser(int montant){
+        fortune=fortune - montant;
     }
 
 

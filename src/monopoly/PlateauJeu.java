@@ -1,5 +1,6 @@
 package monopoly;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import monopoly.cases.Case;
@@ -10,7 +11,7 @@ public class PlateauJeu {
 	private List<Case> cases;
 	
 	public PlateauJeu() {
-		initPlateau();
+		initPlateau(2);
 	}
 
 	/**
@@ -56,7 +57,14 @@ public class PlateauJeu {
 	/**
 	 * Initialise le plateau
 	 */
-	public void initPlateau() {
-		
+	public void initPlateau(int nbJoueurs) {
+		joueurs = new ArrayList<>();
+		for (int i=0; i<nbJoueurs; i++){
+			joueurs.add(new Joueur());
+		}
+		cases = new ArrayList<>();
+		for (int i=0; i<40; i++){
+			cases.add(new Case());
+		}
 	}
 }

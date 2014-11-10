@@ -46,7 +46,7 @@ public abstract class CaseAchetable extends Case {
             j.depenser(prix);
             setProprietaire(j);
 
-        } catch (NoMoreMoney e) {
+        } catch (Exception e) {
             System.out.println("Pas assez d'argent");
         }
 

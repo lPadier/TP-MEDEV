@@ -58,6 +58,8 @@ public class Joueur {
         return this.nom;
     }
 
+    public void depenser(int value) {};
+
     //Affiche le nom et la position du joueur sous le format "Le joueur XX est en YY"
     public String toString(){
         return "Le joueur " + nom + " est en " + position;

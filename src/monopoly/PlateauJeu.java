@@ -44,7 +44,9 @@ public class PlateauJeu {
 	 * Affiche le plateau
 	 */
 	public void affiche() {
-		
+		for (Case c : this.cases) {
+			System.out.println(c);
+		}
 	}
 	
 	/**

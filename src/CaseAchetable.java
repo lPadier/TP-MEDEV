@@ -35,6 +35,8 @@ public class CaseAchetable {
       
        try {
         j.depenser(prix);
+        setProprietaire(j);
+        
        }
        catch(NoMoreMoney e){
            System.out.prinln("Pas assez d'argent");

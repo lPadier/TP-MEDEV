@@ -28,7 +28,10 @@ public class Constructible extends CaseAchetable {
     }
 
     public Constructible(String nom, int position, PlateauJeu plateauJeu, int prix, int prixMaison, int[] loyers) {
-        Constructible(nom, null, position, plateauJeu, prix, prixMaison, loyers);
+        super(nom, null, position, plateauJeu, prix);
+        this.prixMaison= prixMaison;
+        this.nbMaison = nbMaison;
+        this.loyers = loyers;
     }
 
     public int loyer() {

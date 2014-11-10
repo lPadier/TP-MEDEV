@@ -71,10 +71,6 @@ public class PlateauJeu {
 	 * Initialise le plateau
 	 */
 	public void initPlateau(int nbJoueurs) {
-		joueurs = new ArrayList<>();
-		for (int i=0; i<nbJoueurs; i++){
-			joueurs.add(new Joueur());
-		}
 		cases = new ArrayList<>();
 		for (int i=0; i<40; i++){
 			Case c = null;
@@ -82,10 +78,15 @@ public class PlateauJeu {
 				// Gare
 				c = new Gare(nomsGares[(i-5)/10], i, this);
 			} else {
-				c = new Constructible("Case anonyme", "", i, this, 10, 10);
+				int[] loyers = new int[] {10,10,10,10,10};
+				c = new Constructible("Case anonyme", "", i, this, 10, 10, loyers);
 			}
 			cases.add(c);
 		}
+        joueurs = new ArrayList<>();
+        for (int i=0; i<nbJoueurs; i++){
+            joueurs.add(new Joueur("Bob",this.cases.get(0),this));
+        }
 	}
 
 	/**

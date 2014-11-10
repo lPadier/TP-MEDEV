@@ -11,7 +11,7 @@ public class Gare extends CaseAchetable {
 	private PlateauJeu plateau;
 
 	public Gare(String nom, int position, PlateauJeu plateauJeu) {
-		super(nom, "gare.png", position, plateauJeu);
+		super(nom, "gare.png", position, plateauJeu, 10);
 		if (position % 10 != 5){
 			throw new InvalidParameterException("Position invalide pour une gare");
 		}

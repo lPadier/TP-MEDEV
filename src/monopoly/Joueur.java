@@ -1,17 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+package monopoly;
 
+import monopoly.cases.Case;
+import monopoly.cases.CaseAchetable;
 
-import java.util.*;
-import java.io.*;
-
-/**
- *
- * @author NguyenQuoc
- */
 public class Joueur {
     
     private String nom;
@@ -39,20 +30,21 @@ public class Joueur {
     
     //Méthodes
     
-    public void TourDeJeu(){
+    public void tourDeJeu(){
         int de;
-        de=lanceLeDe();
+        de = lanceLeDe();
         
-        position=position+de;
+        position = this.plateauJeu.avance(position,de);
         
         System.out.println(this.toString());
         
-        if(position.getClass().getSuperClass().getName()=="CaseAchetable" )
-            if (position.getProprietaire()!=null){
-                
+        if(position instanceof CaseAchetable) {
+            CaseAchetable positionAchetable = (CaseAchetable) position;
+            if (positionAchetable.getProprietaire() != null) {
+                //Gerer le loyer ici
+            } else if (de%2 == 1 && fortune > positionAchetable.getPrix()) {
+                positionAchetable.acheter(this);
             }
-                && (de==1 || de==3 || de==5) && position.getProprietaire()==null && fortune>position.getPrix()){
-            position.acheter(this);
         }
             
         
@@ -62,9 +54,13 @@ public class Joueur {
         return ((int) Math.floor(Math.random()*6))+1;
     }
     
+    public String getNom() {
+        return this.nom;
+    }
+
     //Affiche le nom et la position du joueur sous le format "Le joueur XX est en YY"
     public String toString(){
-        return "Le joueur "+nom+" est en "+position;
+        return "Le joueur " + nom + " est en " + position;
     }
     
 }

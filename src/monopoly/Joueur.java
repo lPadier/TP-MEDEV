@@ -7,6 +7,7 @@
 package monopoly;
 import java.util.*;
 import java.io.*;
+import monopoly.cases.Case;
 
 /**
  *
@@ -39,8 +40,8 @@ public class Joueur {
     
     //Méthodes
 
-    public void paiement(Jouer j, int montant) throws NoMoreMoney{
-        J.ajouteSomme(montant);
+    public void paiement(Joueur j, int montant) throws NoMoreMoney{
+        j.ajouteSomme(montant);
         fortune = fortune - montant;
         if (fortune < 0){
             throw new NoMoreMoney;
@@ -55,8 +56,8 @@ public class Joueur {
         return position;
     }
 
-    public void setPosition(Case case){
-        position=case;
+    public void setPosition(Case c){
+        position=c;
     }
     
     // Fonction décrivant un tour de jeu
@@ -64,7 +65,7 @@ public class Joueur {
         int de;
         de=lanceLeDe();
         
-        position=position+de;   // Le joueur se déplace
+        plateauJeu(deplacer);   // Le joueur se déplace
         
         System.out.println(this.toString());
         

@@ -8,6 +8,7 @@ package monopoly;
 import java.util.*;
 import java.io.*;
 import monopoly.cases.Case;
+import monopoly.cases.CaseAchetable;
 
 /**
  *
@@ -60,22 +61,20 @@ public class Joueur {
         position=c;
     }
     
-    // Fonction décrivant un tour de jeu
-    public void tourDeJeu() throws NoMoreMoney{
+    public void tourDeJeu(){
         int de;
-        de=lanceLeDe();
+        de = lanceLeDe();
         
-        plateauJeu(deplacer);   // Le joueur se déplace
+        position = this.plateauJeu.avance(position,de);
         
         System.out.println(this.toString());
         
-        if(position.instanceof CaseAchetable){
-            if (position.getProprietaire()!=null){   // La case a un propriétaire, on lui verse un loyer
-                paiement(position.getProprietaire(), position.loyer());
-            }
-
-            else if ((de==1 || de==3 || de==5) && position.getProprietaire()==null && fortune>position.getPrix()){  // On achète la case
-                position.acheter(this);
+        if(position instanceof CaseAchetable) {
+            CaseAchetable positionAchetable = (CaseAchetable) position;
+            if (positionAchetable.getProprietaire() != null) {
+                //Gerer le loyer ici
+            } else if (de%2 == 1 && fortune > positionAchetable.getPrix()) {
+                positionAchetable.acheter(this);
             }
         }
         else {  // La case n'est pas achetable
@@ -89,9 +88,13 @@ public class Joueur {
         return ((int) Math.floor(Math.random()*6))+1;
     }
     
+    public String getNom() {
+        return this.nom;
+    }
+
     //Affiche le nom et la position du joueur sous le format "Le joueur XX est en YY"
     public String toString(){
-        return "Le joueur "+nom+" est en "+position.toString();
+        return "Le joueur " + nom + " est en " + position;
     }
 
 

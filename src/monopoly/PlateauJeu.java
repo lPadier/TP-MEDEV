@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import monopoly.cases.Case;
+import monopoly.cases.CaseAchetable;
 
 public class PlateauJeu {
 
@@ -27,7 +28,15 @@ public class PlateauJeu {
 	 * @return le nombre de cases possédées par le joueur j
 	 */
 	public int nbCases(Joueur j) {
-		return 0;
+		int nbr  =0;
+		for (Case c: cases){
+			if (c instanceof CaseAchetable){
+				if (j == ((CaseAchetable) c).getProprietaire()) {
+					nbr ++;
+				}
+			}
+		}
+		return nbr;
 	}
 	
 	/**

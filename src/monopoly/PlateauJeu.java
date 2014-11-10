@@ -69,15 +69,15 @@ public class PlateauJeu {
 	 * Initialise le plateau
 	 */
 	public void initPlateau(int nbJoueurs) {
-		joueurs = new ArrayList<>();
-		for (int i=0; i<nbJoueurs; i++){
-			joueurs.add(new Joueur());
-		}
 		cases = new ArrayList<>();
 		for (int i=0; i<40; i++){
-			Case c = new Constructible("Case anonyme", "", i, this, 10, 10);
+			Case c = new Constructible("Case anonyme", i, this, 10, 10, new int[] {10,10,10,10,10,10});
 			cases.add(c);
 		}
+        joueurs = new ArrayList<>();
+        for (int i=0; i<nbJoueurs; i++){
+            joueurs.add(new Joueur("Bob",this.cases.get(0),this));
+        }
 	}
 
 	/**

@@ -5,7 +5,7 @@ package monopoly.cases;
 import monopoly.Joueur;
 import monopoly.PlateauJeu;
 
-public class CaseAchetable {
+public class CaseAchetable extends Case {
     private int prix;
     private Joueur proprietaire;
     
